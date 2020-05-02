@@ -12,19 +12,19 @@
 
 (deftest one-param-test
   (let [input 1]
-    (testing "Testing no arguments and constant body"
+    (testing "Testing one argument straght to output"
       (dafn one-param-test-async-fn [a]
             a)
       (is (= input
              @(one-param-test-async-fn input))))
-    (testing "Testing no arguments and constant body"
+    (testing "Testing one argument processes output"
       (dafn one-param-process-test-async-fn [a]
             (inc a))
       (is (= (inc input)
              @(one-param-process-test-async-fn input))))))
 
 (deftest two-param-test
-  (testing "Testing no arguments and constant body"
+  (testing "Testing let block inside fn definition"
     (let [b {:x 10}
           output [1 (:x b)]]
       (dafn deconstruct-test-async-fn [a b]
