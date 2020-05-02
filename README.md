@@ -1,10 +1,29 @@
 # dafn
 
-A Clojure library designed to ... well, that part is up to you.
+Define asynchronous functions, just like any common function
 
-## Usage
+```clojure
+(dafn limited-resource [params]
+    (process-and-get-status))
+```
 
-FIXME
+`limited-resource` will return a promise that will be realized when the body
+is processed for its call.
+
+```clojure
+(let [p (limited-resource x)]
+    (some-other-process)
+    (when (realized? p)
+        (more-processing @p)))
+```
+
+`limited-resource` can be called from several threads concurrently
+
+## Limitations
+
+As a macro, this comes with certain limitations. In particular
+- No variable arguments allowed
+- You cannot deconstruct in the argument definition 
 
 ## License
 
